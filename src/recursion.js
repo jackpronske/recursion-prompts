@@ -213,6 +213,7 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+
   if (y === 0) return NaN;
   if (x < 0) {
     return -modulo(-x, y);
@@ -224,12 +225,44 @@ var modulo = function(x, y) {
     return x;
   }
   return modulo(x - y, y);
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+
+  if (x === 0 || y === 0) {
+    return 0;
+  }
+
+  if (y > x) {
+    var newNum = y;
+    y = x;
+    x = newNum;
+  }
+
+  if (y < 0 && x > 0) {
+    y = 0 - y;
+    return -(x + multiply(x, y - 1));
+
+  } else if (y < 0 && x < 0) {
+    y = 0 - y;
+    x = 0 - x;
+  }
+
+  return x + multiply(x, y - 1);
+
 };
+//base case
+//if either number is zero, the answer is zero
+//set the lowest number to y
+//recursive case
+//add x to the recursive call of multiply with x and y - 1
+//when y hits 0, all numbers should add the amount of times
+//return
+
+
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
