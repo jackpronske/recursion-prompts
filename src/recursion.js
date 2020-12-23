@@ -132,8 +132,8 @@ var exponent = function(base, exp) {
   }
 
   if (exp % 2 === 0) {
-    var doubleThisExp = exponent(base, exp / 2)
-    return  doubleThisExp * doubleThisExp;
+    var halveThisExp = exponent(base, exp / 2)
+    return  halveThisExp * halveThisExp;
   } else {
     return base * exponent(base, exp - 1);
   }
@@ -182,9 +182,30 @@ var reverse = function(string) {
 //recusive case
 //take the last letter out, then add the recursive call of reverse of the remaining letters
 
+
+
+
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+
+  string = string.toLowerCase();
+  if (string.length < 2) return true;
+  if (string.charAt(0) === string.charAt(string.length - 1)) {
+    return palindrome(string.substring(1, string.length - 1))
+  }
+  return false;
+
 };
+//edge case - lowercase the entire string before getting started
+//base case
+//returns true if the length of the string is less than 2
+//recursive case
+//checks the first and last letters of the string to see if they match
+//if so, find out if the middle letters are a palindrome
+  //if they don't, it's not a palindrome and return false
+
+
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
