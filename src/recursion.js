@@ -148,7 +148,19 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
+  if (n === 0) return false;
+  if (n === 1) return true;
+  if (n > 1 && n < 2) return false;
+  return powerOfTwo(n / 2);
+
 };
+//edge case of n equalling 0
+//base case
+//if n equals 1, then its true (power of two)
+//if number is between 1 and 2, then false (not power of two)
+//recursive case
+//return powerOfTwo with half of n
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
