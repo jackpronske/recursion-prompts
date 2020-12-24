@@ -314,10 +314,12 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+
   if (x < 0 || y < 0) return null;
   if (x === 0) return y;
   if (y === 0) return x;
-  return gcd(y, x%y);
+  return gcd(y, x % y);
+
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
@@ -325,6 +327,21 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+
+  if (str1.length === 0 && str2.length > 0) {
+    return false;
+  }
+  if (str2.length === 0 && str1.length > 0) {
+    return false;
+  }
+  if (str1.charAt(0) !== str2.charAt(0)) {
+    return false;
+  }
+  if (str1.length === 0 && str2.length === 0) {
+    return true;
+  }
+  return compareStr(str1.slice(1), str2.slice(1));
+
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
