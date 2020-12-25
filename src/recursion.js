@@ -607,11 +607,35 @@ var capitalizeFirst = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+
+  var result = 0;
+  for (var element in obj) {
+    if (obj[element] % 2 === 0) {
+      result += obj[element];
+    }
+
+    if (typeof obj[element] === 'object') {
+      result += nestedEvenSum(obj[element]);
+    }
+  }
+
+  return result;
+
 };
 
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(array) {
+  var result = [];
+  for (var i = 0; i < array.length; i++) {
+    if (!Array.isArray(array[i])) {
+      result.push(array[i]);
+    } else {
+			var flattenedCurrentArray = flatten(array[i]);
+			result = result.concat(flattenedCurrentArray)
+		  }
+		}
+  return result;
 };
 
 // 31. Given a string, return an object containing tallies of each letter.
