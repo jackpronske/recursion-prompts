@@ -723,14 +723,65 @@ var minimizeZeroes = function(array) {
 // their original sign. The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
-};
+var alternateSign = function (array) {
+
+  var result = [];
+  if (array.length === 0) {
+    return result;
+  }
+  if (array.length === 1) {
+    return [Math.abs(array[0])];
+  }
+
+  if (array[0] < 0) {
+    array[0] = Math.abs(array[0]);
+  }
+  if (array[1] > 0) {
+    array[1] = 0 - array[1];
+  }
+
+  result.push(array[0], array[1]);
+  return result.concat(alternateSign(array.slice(2)));
+
+}
+
 
 // 36. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+
+  var numObj = {
+    1 : 'one',
+    2 : 'two',
+    3 : 'three',
+    4 : 'four',
+    5 : 'five',
+    6 : 'six',
+    7 : 'seven',
+    8 : 'eight',
+    9 : 'nine'
+  }
+
+  var result = '';
+  if (str.length === 0) {
+    return result;
+  }
+
+  if (numObj[str.charAt(0)]) {
+    result += numObj[str.charAt(0)];
+  } else {
+    result += str.charAt(0);
+  }
+
+  result += numToText(str.slice(1));
+  return result;
+
 };
+//make an object with nine key/value pairs for numbers
+//iterate through all the characters and add them to the result
+//if a number appears on the search, replace it with its value in the obj
+//return when there are no more characters in the string
 
 
 // *** EXTRA CREDIT ***
